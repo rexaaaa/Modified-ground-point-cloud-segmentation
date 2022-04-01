@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+
+  <!-- Ground segmentation -->
+  <node name="ground_seg" pkg="ground_seg_ros" type="ground_seg_node" output="screen">
+  <!-- 读取参数-->
+    <rosparam command="load" file="$(find ground_seg_ros)/launch/segmentation_params.yaml"/>
+
+    <param name="input_topic" value="/rs_PointCloud2_20" />   <!-- 输入topic -->
+    <!--/kitti/velo/pointcloud -->  
+
+    <param name="ground_output_topic" value="ground_cloud" />
+    <param name="obstacle_output_topic" value="obstacle_cloud" />
+    <param name="border_output_topic" value="cloud_trans" />
+  </node>
+
+
+<!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find ground_seg_ros)/config.rviz" />
+
+<!-- Run Rosbag-->
+<node pkg="rosbag" type="play" name="lidar_rosbag" output="screen" args="/home/yihang/Desktop/LOAM_DATA/lidar_2021_07_25-15_38_12.bag -q"/>
+<!-- <node pkg="rosbag" type="play" name="lidar_rosbag" output="screen" args="/home/yihang/Desktop/LOAM_DATA/kitti_2011_10_03_drive_0027_synced_without_cam.bag -q"/> -->
+</launch>

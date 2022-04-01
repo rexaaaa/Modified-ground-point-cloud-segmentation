@@ -1,0 +1,83 @@
+selection:  1          #selection of segment method 
+#############################################parameter for scancallback 1 
+n_threads: 8            # number of threads to use.默认是4线程
+
+r_min: 0.1        # minimum point distance.  default ->0.5
+r_max: 100               # maximum point distance. default ->50       lidar:100
+n_bins: 240            # number of radial bins.    default ->120      lidar240
+n_segments: 1080       # number of radial segments. kitti bag 360 
+
+max_dist_to_line: 0.05  # maximum vertical distance of point to line to be considered ground.  0.05
+
+sensor_height: 0      # sensor height above ground. # sensor height above ground. 修改你的雷达高度 # 1.8符合kitti数据包的数据
+max_slope: 0.1          # maximum slope of a ground line.
+max_fit_error: 0.05     # maximum error of a point during line fit.
+long_threshold: 1.0     # distance between points after which they are considered far from each other. 
+max_long_height: 0.2   # maximum height change to previous point in long line.
+max_start_height: 0.1   # maximum difference to estimated ground height to start a new line.
+line_search_angle: 0.05  # how far to search in angular direction to find a line [rad]. default 0.1
+  
+latch: false            # latch output topics or not
+visualize: false       # visualize segmentation result - USE ONLY FOR DEBUGGING
+
+out_slope: 0.5         # if slope> out_slope, stop line approximation
+#############################################parameter for scancallback 1  kitti
+#n_threads: 8            # number of threads to use.默认是4线程
+
+#r_min: 0.5              # minimum point distance.  default ->0.5
+#r_max: 50               # maximum point distance. default ->50  lidar:100
+#n_bins: 120            # number of radial bins.   default ->120
+#n_segments: 360       # number of radial segments. lidar bag -> 120, kitti bag 360 
+
+#max_dist_to_line: 0.05  # maximum vertical distance of point to line to be considered ground.  0.05
+
+#sensor_height: 1.8      # sensor height above ground. # sensor height above ground. 修改你的雷达高度 # 1.8符合kitti数据包的数据
+#max_slope: 0.3          # maximum slope of a ground line.
+#max_fit_error: 0.05     # maximum error of a point during line fit.
+#long_threshold: 1.0     # distance between points after which they are considered far from each other. 
+#max_long_height: 0.1    # maximum height change to previous point in long line.
+#max_start_height: 0.2   # maximum difference to estimated ground height to start a new line.
+#line_search_angle: 0.5  # how far to search in angular direction to find a line [rad]. default 0.1
+  
+#latch: false            # latch output topics or not
+#visualize: false       # visualize segmentation result - USE ONLY FOR DEBUGGING
+
+
+
+###############################################parameter for scancallback 2
+sensor_model : 32
+num_iter     : 3
+num_lpr      : 20
+th_seeds     : 0.5
+th_dist      : 0.2
+#也有sensor height
+###############################################parameter for scancallback 3
+
+
+####32
+#N_scan        : 32
+#horizon_scan  : 1800
+#ang_res_x     : 0.2  #degree
+#ang_res_y     : 1.33 # (10.67+30.67)/32
+#ang_bottom    : 30.67
+#groundscan_Ind: 20
+#minrange      : 1
+#ground_N      : 16
+
+####64  不行, 64线投影的range image 分割点云的分辨率太低了, too sparse
+N_scan        : 64
+horizon_scan  : 4500
+ang_res_x     : 0.08  #degree
+ang_res_y     : 0.418 # (2+24.8)/32
+ang_bottom    : 24.8
+groundscan_Ind: 20
+minrange      : 1
+ground_N      : 64
+ 
+
+
+
+
+
+
+
